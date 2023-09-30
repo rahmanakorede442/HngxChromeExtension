@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/video', function (){
-    return 'Hi there, Hello World';
+    return 'Hi there, Hello Worldsdfd';
 });
