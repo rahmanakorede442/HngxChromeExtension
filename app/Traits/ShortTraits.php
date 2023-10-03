@@ -17,7 +17,7 @@
         public function transcribe($link)
         {
             $url = fopen($link, 'r');
-            $response = Http::withHeaders(['Authorization' => 'Bearer GR1EJSH7RYBZGTJLU8DL92IXTK191K1X'])
+            $response = Http::withHeaders(['Authorization' => 'Bearer P3EYZLHVKP5FUFU4QUES55BVILRDBIWI'])
                 ->attach('file', $url)
                 ->post(
                     'https://transcribe.whisperapi.com',
@@ -30,7 +30,7 @@
             return $response->json();
         }
 
-        
+
         public function success($message, $status, $data = [])
         {
             return response()->json([
