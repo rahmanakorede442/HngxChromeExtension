@@ -76,7 +76,7 @@ class VideoController extends Controller
         endif;
     }
 
-    public function transcribe(int $id)
+    public function transcribe($id)
     {
         $get = Video::where('id', $id)->select('path')->get();
 
@@ -88,7 +88,7 @@ class VideoController extends Controller
     }
     public function destroy($id)
     {
-        DB::table('videos')->where('id', $id)->truncate();
+        DB::table('videos')->where('id', $id)->delete();
 
         return $this->success("Video deleted successfully", 200, []);
     }

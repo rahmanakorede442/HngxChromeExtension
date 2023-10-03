@@ -12,6 +12,8 @@
         {
             return Storage::disk($storage)->path($link);
         }
+
+
         public function transcribe($link)
         {
             $url = fopen($link, 'r');
@@ -27,6 +29,8 @@
                 );
             return $response->json();
         }
+
+        
         public function success($message, $status, $data = [])
         {
             return response()->json([
