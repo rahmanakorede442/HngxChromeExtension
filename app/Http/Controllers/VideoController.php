@@ -50,12 +50,19 @@ class VideoController extends Controller
             unlink($fullFilePath);
 
             if ($save) {
-                return  $this->success([$timestampName, $videoSize, $videoLength, $fullVideoPath], 200);
+                $data = [
+                    'video_name' =>   $timestampName,
+                    'video_size' => $videoSize,
+                    'video_length' => $videoLength,
+                    'video_path' => $fullVideoPath
+                ];
+
+                return  $this->success('Image has been uploaded successfully', 200, $data);
             } else{
                 return $this->error('Bad Request an Error Occurred', 422);
             }
         }
-        return $this->error('An Error occurred While trying to Save file, Check Internet Connection ', 422);
+        return $this->error('Error saving video', 422);
     }
 
 
@@ -65,7 +72,7 @@ class VideoController extends Controller
         if (!$video->isEmpty()) :
             return $this->fetchOrFailData(200, 'success', JsonResource::collection($video));
         else :
-            return $this->fetchOrFailData(404, 'error', 'no data found');
+            return $this->fetchOrFailData(404, 'error', 'Video not found');
         endif;
     }
 
@@ -83,6 +90,6 @@ class VideoController extends Controller
     {
         DB::table('videos')->where('id', $id)->truncate();
 
-        return$this->success("Video deleted successfully", 200);
+        return $this->success("Video deleted successfully", 200, []);
     }
 }

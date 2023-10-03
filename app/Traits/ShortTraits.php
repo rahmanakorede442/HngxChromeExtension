@@ -27,24 +27,19 @@
                 );
             return $response->json();
         }
-        public function success($array = [], int $statusCode)
+        public function success($message, $status, $data = [])
         {
             return response()->json([
-                'StatusCode' => 201,
-                'message' => 'Image has been uploaded successfully',
-                'status' => 'Created',
-                'data' => [
-                    'video_name' =>   $array[0],
-                    'video_size' => $array[1],
-                    'video_length' => $array[2],
-                    'video_path' => $array[3]
-                ]
-            ], $statusCode);
+                'StatusCode' => $status,
+                'message' => $message,
+                'data' => $data
+            ], $status);
         }
-        public function error($message, $statusCode)
+
+        public function error($message, $status)
         {
             return response()->json([
-                'StatusCode' => $statusCode,
+                'StatusCode' => $status,
                 'status' => 'error',
                 'message' => $message,
             ]);
