@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\VideoResource;
 use App\Http\Requests\StoreVideoRequest;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class VideoController extends Controller
 {
@@ -62,7 +63,7 @@ class VideoController extends Controller
     {
         $video = Video::all(['id', 'name', 'size', 'length', 'path', 'uploaded_time']);
         if (!$video->isEmpty()) :
-            return $this->fetchOrFailData(200, 'success', VideoResource::collection($video));
+            return $this->fetchOrFailData(200, 'success', JsonResource::collection($video));
         else :
             return $this->fetchOrFailData(404, 'error', 'no data found');
         endif;
